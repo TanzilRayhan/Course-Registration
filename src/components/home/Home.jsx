@@ -11,20 +11,27 @@ const Home = () => {
 
     const [allCourses, setAllcourses] = useState([])
 
+    const [selected, setSelected] = useState([])
+
     useEffect(()=>{
         fetch('./data.json')
         .then(res => res.json())
         .then(data => setAllcourses(data));
     },[])
-    console.log(allCourses)
+    
+    const handleCourses = (courses) => {
+        setSelected([...selected, courses]);
+    }
+
+    console.log(selected);
 
   return (
     <>
     <div className="text-3xl font-bold text-center m-12">
         <h1>Course Registration</h1>
     </div>
-    <div className="container flex justify-between mx-10"> 
-      <div className="w-2/3 grid grid-cols-3">
+    <div className="container lg:flex justify-center lg:justify-between mx-10"> 
+      <div className="w-2/3 grid grid-cols-1 lg:grid-cols-3">
         {
             allCourses.map( (courses) => (
                 <div key={courses.id} className="card-container ">
@@ -46,7 +53,7 @@ const Home = () => {
      </svg>  <h3>Credit: {courses.credit} hr</h3>
                    </div>
                    <div className="card-actions  bottom-0">
-                     <button className="btn bg-sky-500 w-full text-white">Select</button>
+                     <button onClick={()=>handleCourses(courses)} className="btn bg-sky-500 w-full text-white">Select</button>
                    </div>
                  </div>
                </div> 
@@ -56,8 +63,8 @@ const Home = () => {
 
       </div>
 
-      <div className="ml-10 w-1/3">
-            <Cart></Cart>
+      <div className="lg:ml-10 lg:w-1/3">
+            <Cart selected={selected}></Cart>
         </div>
 
     </div>
