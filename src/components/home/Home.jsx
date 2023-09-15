@@ -3,8 +3,10 @@
 /* eslint-disable react/jsx-key */
 import { useState } from "react";
 import { useEffect } from "react";
-
 import Cart from "../cart/Cart";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 /* eslint-disable react/no-unknown-property */
 const Home = () => {
@@ -18,9 +20,16 @@ const Home = () => {
         .then(res => res.json())
         .then(data => setAllcourses(data));
     },[])
-    
+    const notify = () => toast.error("Course is Already Selected. Please Select Another One !");
     const handleCourses = (courses) => {
-        setSelected([...selected, courses]);
+        const isExist = selected.find((item) => item == courses);
+        if(isExist){
+            notify();
+        }
+        else{        
+            setSelected([...selected, courses]);
+        }
+        // setSelected([...selected, courses]);
     }
 
     console.log(selected);
@@ -54,7 +63,9 @@ const Home = () => {
                    </div>
                    <div className="card-actions  bottom-0">
                      <button onClick={()=>handleCourses(courses)} className="btn bg-sky-500 w-full text-white">Select</button>
+                    
                    </div>
+                   <ToastContainer />
                  </div>
                </div> 
              </div>
