@@ -62,7 +62,7 @@ const Home = () => {
                 <hr />
             </div>
             <div className="container flex flex-col text-center lg:text-left lg:flex-row-reverse mb-10">
-                <div className=" max-w-3xl lg:mr-20 mb-10">
+                <div className=" max-w-3xl mx-10 lg:mr-20 mb-10">
                     <Cart
                         selected={selected}
                         remaining={remaining}
@@ -83,7 +83,7 @@ const Home = () => {
                                         {courses.courseTitle}
                                     </h2>
                                     <p className=" text-gray-500 ">{courses.courseDetails}</p>
-                                    <div className="flex lg:gap-3 ">
+                                    <div className="flex lg:gap-3 justify-center lg:justify-start text-center">
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="24"
