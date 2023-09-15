@@ -56,11 +56,11 @@ const Home = () => {
     return (
         <>
             <div className="main max-w-full mx-auto">
-            <div className="text-3xl font-bold text-center my-20">
+            <div className="text-2xl font-bold justify-center text-center my-12">
                 <h1>Course Registration</h1>
             </div>
-            <div className="container flex flex-col lg:flex-row-reverse justify-center lg:justify-between m-10">
-                <div className="lg:ml-10 lg:w-1/3 mb-10">
+            <div className="container flex flex-col text-center lg:text-left lg:flex-row-reverse">
+                <div className=" max-w-3xl mx-auto mb-10">
                     <Cart
                         selected={selected}
                         remaining={remaining}
@@ -69,14 +69,14 @@ const Home = () => {
                     ></Cart>
                 </div>
 
-                <div className="w-2/3 grid grid-cols-1 lg:grid-cols-3">
+                <div className="w-2/3 mx-auto grid grid-cols-1 lg:grid-cols-3">
                     {allCourses.map((courses) => (
                         <div key={courses.id} className="card-container ">
                             <div className="card card-compact w-full">
                                 <figure>
                                     <img src={courses.cover} />
                                 </figure>
-                                <div className="card-body lg:mx-2">
+                                <div className="card-body lg:mx-3">
                                     <h2 className="text-lg font-semibold">
                                         {courses.courseTitle}
                                     </h2>
