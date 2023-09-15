@@ -12,21 +12,37 @@ import 'react-toastify/dist/ReactToastify.css';
 const Home = () => {
 
     const [allCourses, setAllcourses] = useState([])
-
     const [selected, setSelected] = useState([])
+
+    const [remaining, setRemaining] = useState(20)
+    const [totalCredits, setTotalCredits] = useState(0)
+    const [totalPrice, setTotalPrice] = useState(0)
 
     useEffect(()=>{
         fetch('./data.json')
         .then(res => res.json())
         .then(data => setAllcourses(data));
     },[])
-    const notify = () => toast.error("Course is Already Selected. Please Select Another One !");
+    const notify = () => toast.error("This Course is Already Selected. Please Select Another One !");
     const handleCourses = (courses) => {
+        let count = courses.credit;
+        let coursePrice = courses.price;
         const isExist = selected.find((item) => item == courses);
         if(isExist){
             notify();
         }
         else{        
+            selected.forEach((item) =>{
+                count += item.credit;
+                coursePrice += item.price;
+            });
+
+            const creditRemaining = 20 - count;
+
+            setTotalCredits(count);
+            setTotalPrice(coursePrice);
+            setRemaining(creditRemaining);
+
             setSelected([...selected, courses]);
         }
         // setSelected([...selected, courses]);
@@ -36,15 +52,21 @@ const Home = () => {
 
   return (
     <>
-    <div className="text-3xl font-bold text-center m-12">
+    <div className="text-3xl font-bold text-center m-10">
         <h1>Course Registration</h1>
     </div>
-    <div className="container lg:flex justify-center lg:justify-between mx-10"> 
+    <div className="container lg:flex lg:flex-row-reverse justify-center lg:justify-between mx-10 mb-20"> 
+    
+    <div className="lg:ml-10 lg:w-1/3 mb-10">
+            <Cart selected={selected} remaining={remaining} totalCredits={totalCredits} totalPrice={totalPrice}></Cart>
+        </div>
+
+
       <div className="w-2/3 grid grid-cols-1 lg:grid-cols-3">
         {
             allCourses.map( (courses) => (
                 <div key={courses.id} className="card-container ">
-                <div className="card card-compact w-full gap-3">
+                <div className="card card-compact w-full lg:gap-3">
                  <figure>
                    <img
                      src={courses.cover}
@@ -63,7 +85,6 @@ const Home = () => {
                    </div>
                    <div className="card-actions  bottom-0">
                      <button onClick={()=>handleCourses(courses)} className="btn bg-sky-500 w-full text-white">Select</button>
-                    
                    </div>
                    <ToastContainer />
                  </div>
@@ -74,9 +95,6 @@ const Home = () => {
 
       </div>
 
-      <div className="lg:ml-10 lg:w-1/3">
-            <Cart selected={selected}></Cart>
-        </div>
 
     </div>
 

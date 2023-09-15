@@ -3,12 +3,12 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/prop-types */
 
-const Cart = ({selected}) => {
+const Cart = ({selected, totalCredits, remaining, totalPrice}) => {
     console.log(selected);
 
     return (
         <div>
-            <h1 className="text-2xl font-bold mb-5 text-blue-600">Credit Hour Remaining: 20 hr</h1>
+            <h1 className="text-xl lg:text-2xl font-bold mb-5 text-blue-600">Credit Hour Remaining: {remaining} hr</h1>
             <h3 className="text-xl font-semibold my-3">Course Taken: {selected.length}</h3>
             <hr />
             <div>
@@ -23,9 +23,9 @@ const Cart = ({selected}) => {
             </ul>
             </div>
             <hr />
-            <h3 className="text-lg font-semibold my-3">Total Credit Hour: {selected.length} hr</h3>
+            <h3 className="text-lg font-semibold my-3">Total Credit Hour: {totalCredits} hr</h3>
             <hr />
-            <h3 className="text-lg font-semibold my-3">Total Price : 48000 USD</h3>
+            <h3 className="text-lg font-semibold my-3">Total Price : BDT {totalPrice}</h3>
         </div>
     );
 };
