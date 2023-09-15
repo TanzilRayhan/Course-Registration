@@ -56,11 +56,13 @@ const Home = () => {
     return (
         <>
             <div className="main max-w-full mx-auto">
-            <div className="text-2xl font-bold justify-center text-center my-12">
+            <div className="text-4xl font-bold justify-center text-center my-12">
                 <h1>Course Registration</h1>
+                <br />
+                <hr />
             </div>
-            <div className="container flex flex-col text-center lg:text-left lg:flex-row-reverse">
-                <div className=" max-w-3xl mx-auto mb-10">
+            <div className="container flex flex-col text-center lg:text-left lg:flex-row-reverse mb-10">
+                <div className=" max-w-3xl lg:mr-20 mb-10">
                     <Cart
                         selected={selected}
                         remaining={remaining}
@@ -81,7 +83,7 @@ const Home = () => {
                                         {courses.courseTitle}
                                     </h2>
                                     <p className=" text-gray-500 ">{courses.courseDetails}</p>
-                                    <div className="flex gap-3 ">
+                                    <div className="flex lg:gap-3 ">
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="24"
@@ -104,7 +106,7 @@ const Home = () => {
                                                 stroke-linejoin="round"
                                             />
                                         </svg>{" "}
-                                        <h3>Price: {courses.price} </h3>
+                                        <h3 className="mr-2">Price: {courses.price} </h3>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="24"
